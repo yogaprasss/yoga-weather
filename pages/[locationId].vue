@@ -4,6 +4,7 @@
       <Title>Weather Forecast for {{ location }} | YogaWeather</Title>
     </Head>
     {{ locationId }}
+    {{ item }}
   </div>
 </template>
 
@@ -15,14 +16,18 @@ const locationName = {
 };
 export default {
   name: 'weather-page',
+  async asyncData({ params }) {
+    return { item: JSON.stringify(params) };
+  },
   data() {
     return {
       locationId: '',
       location: '',
-      isLoading: true
+      isLoading: true,
+      item: 'item'
     };
   },
-  created() {
+  beforeCreated() {
     this.locationId = this.$route.params.locationId;
     setTimeout(() => {
       this.location = locationName[this.locationId];
