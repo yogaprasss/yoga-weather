@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!isLoading">
     <Head>
       <Title>Weather Forecast for {{ location }} | YogaWeather</Title>
     </Head>
@@ -18,13 +18,15 @@ export default {
   data() {
     return {
       locationId: '',
-      location: ''
+      location: '',
+      isLoading: true
     };
   },
   created() {
     this.locationId = this.$route.params.locationId;
     setTimeout(() => {
       this.location = locationName[this.locationId];
+      this.isLoading = false;
     }, 5000);
   }
 }
