@@ -6,7 +6,7 @@ export const encryptText = (text) => {
     let comparisonArray = [];
     if (alphabetUpperCase.includes(item)) comparisonArray = alphabetUpperCase;
     else if (alphabet.includes(item)) comparisonArray = alphabet;
-    else if (item === ' ') return '%';
+    else if (item === ' ') return '.';
     else return item;
     const index = comparisonArray.findIndex((char) => char === item);
     return comparisonArray[(index + 11) % 26];
@@ -18,7 +18,7 @@ export const decryptText = (text) => {
     let comparisonArray = [];
     if (alphabetUpperCase.includes(item)) comparisonArray = alphabetUpperCase;
     else if (alphabet.includes(item)) comparisonArray = alphabet;
-    else if (item === '%') return ' ';
+    else if (item === '.') return ' ';
     else return item;
     const index = comparisonArray.findIndex((char) => char === item);
     return comparisonArray[(index + 15) % 26];
