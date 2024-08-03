@@ -19,8 +19,9 @@ export default {
     Autocomplete
   },
   methods: {
-    onSelectOption({ value: key }) {
-      this.$router.push(key);
+    onSelectOption(params) {
+      console.log(JSON.stringify(params));
+      this.$router.push(params.value);
     }
   }
 }

@@ -1,6 +1,18 @@
 <template>
-  <NuxtPage />
+  <div>
+    <LayoutHeader v-if="$route.params.locationId" />
+    <NuxtPage />
+  </div>
 </template>
+
+<script>
+import LayoutHeader from './components/Header';
+export default {
+  components: {
+    LayoutHeader
+  }
+}
+</script>
 
 <style lang="css">
 html {
@@ -8,7 +20,6 @@ html {
 }
 body {
   margin: 0;
-  padding: 0 1rem;
   display: flex;
   justify-content: center;
   height: 100vh;
@@ -19,10 +30,12 @@ body {
 #__nuxt {
   width: 100%;
   max-width: 1024px;
+  padding: 0 1rem;
+  overflow-y: scroll;
 }
 .content {
   width: 100%;
-  color: rgb(8, 89, 46);
+  color: #08592e;
   position: relative;
 }
 </style>

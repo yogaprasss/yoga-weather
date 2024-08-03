@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
+  <div :class="['container', { 'on-header': onHeader }]">
     <input placeholder="Search your location here" v-model="location" />
     <div v-if="isShowLoading" class="spinner-container">
-      <Spinner></Spinner>
+      <Spinner :small="onHeader"></Spinner>
     </div>
     <div v-if="isShowList" class="options">
       <div v-if="options.length === 0 && !isError" class="not-found">No location found</div>
@@ -27,6 +27,9 @@ import Spinner from './Spinner';
 
 export default {
   name: 'Autocomplete',
+  props: {
+    onHeader: { type: Boolean, default: false }
+  },
   data: () => {
     return {
       location: '',
@@ -111,7 +114,12 @@ export default {
   font-size: 16px;
 }
 
-.spinner-container {
+.container.on-header input {
+  height: 32px;
+  font-size: 14px;
+}
+
+.container .spinner-container {
   position: absolute;
   width: calc(100% - 24px);
   max-width: 576px;
@@ -122,6 +130,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: end;
+}
+
+.container.on-header .spinner-container {
+  height: 32px;
 }
 
 .options {
