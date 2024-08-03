@@ -46,22 +46,124 @@ export default {
         // const result = await getLocations(value);
         const result = [
           {
-            Key: 'jakarta',
-            LocalizedName: 'DKI Jakarta',
-            Country: { LocalizedName: 'Indonesia' },
-            AdministrativeArea: { LocalizedName: 'DKI Jakarta' }
+            "Version": 1,
+            "Key": "208971",
+            "Type": "City",
+            "Rank": 10,
+            "LocalizedName": "Jakarta",
+            "Country": {
+              "ID": "ID",
+              "LocalizedName": "Indonesia"
+            },
+            "AdministrativeArea": {
+              "ID": "JK",
+              "LocalizedName": "Jakarta"
+            }
           },
           {
-            Key: 'bandung',
-            LocalizedName: 'Bandung',
-            Country: { LocalizedName: 'Indonesia' },
-            AdministrativeArea: { LocalizedName: 'Jawa Barat' }
+            "Version": 1,
+            "Key": "3430609",
+            "Type": "City",
+            "Rank": 25,
+            "LocalizedName": "Jakarta Barat",
+            "Country": {
+              "ID": "ID",
+              "LocalizedName": "Indonesia"
+            },
+            "AdministrativeArea": {
+              "ID": "JK",
+              "LocalizedName": "Jakarta"
+            }
           },
           {
-            Key: 'surabaya',
-            LocalizedName: 'Surabaya',
-            Country: { LocalizedName: 'Indonesia' },
-            AdministrativeArea: { LocalizedName: 'Jawa Timur' }
+            "Version": 1,
+            "Key": "1982856",
+            "Type": "City",
+            "Rank": 25,
+            "LocalizedName": "Jakarta Pusat",
+            "Country": {
+              "ID": "ID",
+              "LocalizedName": "Indonesia"
+            },
+            "AdministrativeArea": {
+              "ID": "JK",
+              "LocalizedName": "Jakarta"
+            }
+          },
+          {
+            "Version": 1,
+            "Key": "3430607",
+            "Type": "City",
+            "Rank": 25,
+            "LocalizedName": "Jakarta Selatan",
+            "Country": {
+              "ID": "ID",
+              "LocalizedName": "Indonesia"
+            },
+            "AdministrativeArea": {
+              "ID": "JK",
+              "LocalizedName": "Jakarta"
+            }
+          },
+          {
+            "Version": 1,
+            "Key": "3430608",
+            "Type": "City",
+            "Rank": 25,
+            "LocalizedName": "Jakarta Timur",
+            "Country": {
+              "ID": "ID",
+              "LocalizedName": "Indonesia"
+            },
+            "AdministrativeArea": {
+              "ID": "JK",
+              "LocalizedName": "Jakarta"
+            }
+          },
+          {
+            "Version": 1,
+            "Key": "3430610",
+            "Type": "City",
+            "Rank": 25,
+            "LocalizedName": "Jakarta Utara",
+            "Country": {
+              "ID": "ID",
+              "LocalizedName": "Indonesia"
+            },
+            "AdministrativeArea": {
+              "ID": "JK",
+              "LocalizedName": "Jakarta"
+            }
+          },
+          {
+            "Version": 1,
+            "Key": "3484709",
+            "Type": "City",
+            "Rank": 85,
+            "LocalizedName": "Jakarta Baru",
+            "Country": {
+              "ID": "ID",
+              "LocalizedName": "Indonesia"
+            },
+            "AdministrativeArea": {
+              "ID": "MA",
+              "LocalizedName": "Maluku"
+            }
+          },
+          {
+            "Version": 1,
+            "Key": "3427242",
+            "Type": "City",
+            "Rank": 85,
+            "LocalizedName": "Jakarta",
+            "Country": {
+              "ID": "PH",
+              "LocalizedName": "Philippines"
+            },
+            "AdministrativeArea": {
+              "ID": "TAW",
+              "LocalizedName": "Tawi-Tawi"
+            }
           }
         ];
         this.isShowLoading = true;

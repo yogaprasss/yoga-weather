@@ -89,27 +89,31 @@
 </template>
 
 <script>
-const locationName = {
-  jakarta: 'DKI Jakarta',
-  bandung: 'Bandung',
-  surabaya: 'Surabaya'
-};
+import { decryptNumber, decryptText } from '@/utils/string';
+
 export default {
   name: 'weather-page',
   data() {
     return {
       locationId: '',
-      location: ''
+      location: '',
+      area: '',
+      country: ''
     };
   },
   created() {
-    this.locationId = this.$route.params.locationId;
+    const param = this.$route.params.locationId;
+    const [id, location, area, country] = param.split('&');
+    this.locationId = decryptNumber(id);
+    this.location = decryptText(location);
+    this.area = decryptText(area);
+    this.country = decryptText(country);
+    console.log([this.locationId, this.location, this.area, this.country])
     // const url = import.meta.env.VITE_LOCATION_URL;
     // const apiKey = import.meta.env.VITE_API_KEY;
     // const query = `?apikey=${apiKey}&q=${this.locationId}`;
     // const result = await fetch(url + query);
     // this.item = await result.json();
-    this.location = locationName[this.locationId];
   }
 }
 </script>

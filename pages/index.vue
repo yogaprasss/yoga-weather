@@ -13,6 +13,8 @@
 
 <script>
 import Autocomplete from '@/components/Autocomplete';
+import { encryptText, encryptNumber } from '@/utils/string';
+
 export default {
   name: 'home-page',
   components: {
@@ -20,8 +22,12 @@ export default {
   },
   methods: {
     onSelectOption(params) {
-      console.log(JSON.stringify(params));
-      this.$router.push(params.value);
+      const value = encryptNumber(params.value);
+      const name = encryptText(params.name);
+      const area = encryptText(params.area);
+      const country = encryptText(params.country);
+      const encrypted = [value, name, area, country].join('&');
+      this.$router.push(encrypted);
     }
   }
 }
