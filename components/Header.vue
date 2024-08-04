@@ -42,8 +42,8 @@ export default {
       ],
       unit: 'metric',
       unitOptions: [
-        { value: 'metric', detail: 'Metric - °C / km/h / km / hPa / mm', label: '°C' },
-        { value: 'imperial', detail: 'Imperial - °F / mi/h / mi / inHg / in', label: '°F' },
+        { value: 'metric', detail: 'Metric - °C / km/h / km / m / hPa / mm', label: '°C' },
+        { value: 'imperial', detail: 'Imperial - °F / mi/h / mi / ft / inHg / in', label: '°F' },
       ],
       isShowSearch: false
     };
