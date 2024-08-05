@@ -13,7 +13,7 @@ export const dateFormat = (dateParam, lang = 'en') => {
   const amPm = hour < 12 ? 'AM' : 'PM';
 
   const dateString = lang === 'en' ? `${month} ${day}, ${year}` : `${day} ${month} ${year}`;
-  const timeString = `${hour}:${minute}${lang === 'en' ? ' ' + amPm : ''}`;
+  const timeString = `${hour}:${minute < 10 ? '0' : ''}${minute}${lang === 'en' ? ' ' + amPm : ''}`;
 
   return `${dateString} ${timeString}`;
 };

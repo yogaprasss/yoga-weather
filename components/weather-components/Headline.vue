@@ -4,7 +4,11 @@
       <p class="title">
         <strong>{{ location.location }}, {{ location.area }}, {{ location.country }}</strong>
       </p>
-      <p class="title">
+      <div class="observation-time-desktop">
+        <p class="title">Observed on</p>
+        <p class="title">{{ dateObservedString }}</p>
+      </div>
+      <p class="title observation-time-mobile">
         Observed on {{ dateObservedString }}
       </p>
     </div>
@@ -56,14 +60,17 @@ export default {
 .headline-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 .title {
   margin: 0;
   font-size: 16px;
 }
-.title:last-child {
+.observation-time-desktop {
   text-align: right;
+  display: block;
+}
+.observation-time-mobile {
+  display: none;
 }
 .temperature-container {
   flex-grow: 1;
@@ -90,6 +97,7 @@ export default {
 .temperature-desktop p {
   text-align: center;
   font-size: 18px;
+  margin: 8px 0 0;
 }
 
 @media (max-width: 575.98px) {
@@ -98,6 +106,12 @@ export default {
     text-align: left !important;
   }
   .headline-container {
+    display: block;
+  }
+  .observation-time-desktop {
+    display: none;
+  }
+  .observation-time-mobile {
     display: block;
   }
   .temperature-desktop {
@@ -110,6 +124,9 @@ export default {
   .temperature-mobile h3 {
     font-size: 36px;
     margin: 0;
+  }
+  .temperature-mobile p {
+    margin: 8px 0;
   }
 }
 </style>

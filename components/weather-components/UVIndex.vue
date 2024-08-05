@@ -1,11 +1,15 @@
 <template>
   <div class="container">
-    <p class="title">Temperature Difference</p>
+    <p class="title">UV Index</p>
     <div class="data-container">
       <div class="data-content">
-        <h3>{{ dataWithUnit }}</h3>
-        <p class="description">{{ dataContext }} than the last 24 hour</p>
+        <h3>{{ value }}</h3>
+        <p class="description">{{ text }}</p>
       </div>
+    </div>
+    <div class="index-bar-container">
+      <div class="index-bar"></div>
+      <div class="index-indicator" :style="{ left }"></div>
     </div>
   </div>
 </template>
@@ -15,16 +19,13 @@ export default {
   name: 'simple-data',
   props: {
     value: { type: Number, default: 0 },
-    unit: { type: String, default: '' }
+    text: { type: String, default: '' }
   },
   computed: {
-    dataWithUnit() {
-      if (['C', 'F'].includes(this.unit)) return `${Math.abs(this.value)}°${this.unit}`;
-      return `${Math.abs(this.value)} ${this.unit}`;
-    },
-    dataContext() {
-      if (this.value < 0) return 'lower';
-      return 'higher';
+    left() {
+      if (this.value === 0) return '8px';
+      if (this.value > 12) return '100%';
+      return `${(this.value / 12) * 100}%`;
     }
   }
 };
@@ -56,6 +57,27 @@ export default {
 }
 .data-container .description {
   margin: 4px 0 0;
+}
+.index-bar-container {
+  width: 100%;
+  position: relative;
+}
+.index-bar {
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #0f0 0%, #ff0 20%, #f80 60%, #f00 65%, #f0f 98%);
+  border-radius: 3px;
+  border: 1px solid #bbb;
+}
+.index-indicator {
+  position: absolute;
+  top: 1px;
+  width: 4px;
+  height: 4px;
+  border: 1px solid black;
+  border-radius: 50%;
+  background: white;
+  transform: translateX(calc(1px - 100%));
 }
 @media (max-width: 575.98px) {
   .title {

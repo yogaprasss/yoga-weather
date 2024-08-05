@@ -20,7 +20,7 @@
         <div class="data-container small-container">
           <SimpleData
             :title="'Real Feel'"
-            :value="data?.RealFeelTemperature?.[unit]?.Value"
+            :value="String(data?.RealFeelTemperature?.[unit]?.Value)"
             :unit="data?.RealFeelTemperature?.[unit]?.Unit"
           />
         </div>
@@ -30,6 +30,16 @@
             :unit="data?.Past24HourTemperatureDeparture?.[unit]?.Unit"
           />
         </div>
+      </div>
+      <div class="data-container more-data-container small-container">
+        <SimpleData
+          :title="'Humidity'"
+          :value="String(data?.RelativeHumidity)"
+          unit="%"
+        />
+      </div>
+      <div class="data-container more-data-container small-container">
+        <UVIndex :value="data?.UVIndex" :text="data?.UVIndexText" />
       </div>
     </div>
   </div>
@@ -42,13 +52,15 @@ import sampleData from '@/data/sample.json';
 import Headline from '@/components/weather-components/Headline';
 import SimpleData from '@/components/weather-components/SimpleData';
 import TemperatureDifference from '@/components/weather-components/TemperatureDifference';
+import UVIndex from '@/components/weather-components/UVIndex';
 
 export default {
   name: 'weather-page',
   components: {
     Headline,
     SimpleData,
-    TemperatureDifference
+    TemperatureDifference,
+    UVIndex
   },
   data() {
     return {
@@ -83,7 +95,7 @@ export default {
 }
 .weather-container .content {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 1rem;
 }
 .data-container {
@@ -93,29 +105,38 @@ export default {
   border-radius: 12px;
 }
 .data-container#headline {
-  grid-column: span 4 / span 4;
-  height: calc(400px + 1rem - 24px);
+  grid-column: span 6 / span 6;
+  height: calc(200px - 24px);
 }
 #more-headline {
-  grid-column: span 2 / span 2;
+  grid-column: span 6 / span 6;
   display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
 .small-container {
   height: calc(200px - 24px);
 }
+.more-data-container {
+  grid-column: span 3 / span 3;
+}
 
 @media (max-width: 575.98px) {
   .data-container#headline {
-    grid-column: span 6 / span 6;
-    height: calc(320px - 24px);
+    grid-column: span 12 / span 12;
+    height: calc(280px - 24px);
   }
   #more-headline {
-    grid-column: span 6 / span 6;
+    grid-column: span 12 / span 12;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
+  }
+  .small-container {
+    height: calc(160px - 24px);
+  }
+  .more-data-container {
+    grid-column: span 6 / span 6;
   }
 }
 </style>

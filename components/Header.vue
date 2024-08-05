@@ -28,7 +28,7 @@
 import Autocomplete from './Autocomplete';
 import DropdownSelector from './DropdownSelector';
 export default {
-  name: 'header',
+  name: 'layout-header',
   components: {
     DropdownSelector,
     Autocomplete
