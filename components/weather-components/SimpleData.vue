@@ -4,6 +4,9 @@
     <div class="data-container">
       <h3>{{ dataWithUnit }}</h3>
     </div>
+    <div v-if="!!additionalInformation" class="additional-information">
+      {{ additionalInformation }}
+    </div>
   </div>
 </template>
 
@@ -13,7 +16,8 @@ export default {
   props: {
     title: { type: String, default: '' },
     value: { type: String, default: '' },
-    unit: { type: String, default: '' }
+    unit: { type: String, default: '' },
+    additionalInformation: { type: String, default: '' }
   },
   computed: {
     dataWithUnit() {
@@ -44,6 +48,9 @@ export default {
   font-size: 44px;
   margin: 0;
   line-height: 1;
+}
+.additional-information {
+  font-size: 14px;
 }
 @media (max-width: 575.98px) {
   .title {

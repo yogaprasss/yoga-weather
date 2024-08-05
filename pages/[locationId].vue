@@ -36,6 +36,7 @@
           :title="'Humidity'"
           :value="String(data?.RelativeHumidity)"
           unit="%"
+          :additional-information="dewPointInformation"
         />
       </div>
       <div class="data-container more-data-container small-container">
@@ -80,6 +81,13 @@ export default {
       data: {},
       unit: 'Metric'
     };
+  },
+  computed: {
+    dewPointInformation() {
+      const value = this.data?.DewPoint?.[this.unit]?.Value;
+      const unit = this.data?.DewPoint?.[this.unit]?.Unit;
+      return `The dew point is ${value}°${unit} right now`;
+    }
   },
   created() {
     const param = this.$route.params.locationId;
