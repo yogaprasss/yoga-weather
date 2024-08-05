@@ -23,6 +23,7 @@
 <script>
 import { debounce } from '@/utils/debounce';
 import Spinner from './Spinner';
+import location from '@/data/location.json';
 // import { getLocations } from '@/services/locations';
 
 export default {
@@ -44,128 +45,7 @@ export default {
       this.isShowList = false;
       if (value) {
         // const result = await getLocations(value);
-        const result = [
-          {
-            "Version": 1,
-            "Key": "208971",
-            "Type": "City",
-            "Rank": 10,
-            "LocalizedName": "Jakarta",
-            "Country": {
-              "ID": "ID",
-              "LocalizedName": "Indonesia"
-            },
-            "AdministrativeArea": {
-              "ID": "JK",
-              "LocalizedName": "Jakarta"
-            }
-          },
-          {
-            "Version": 1,
-            "Key": "3430609",
-            "Type": "City",
-            "Rank": 25,
-            "LocalizedName": "Jakarta Barat",
-            "Country": {
-              "ID": "ID",
-              "LocalizedName": "Indonesia"
-            },
-            "AdministrativeArea": {
-              "ID": "JK",
-              "LocalizedName": "Jakarta"
-            }
-          },
-          {
-            "Version": 1,
-            "Key": "1982856",
-            "Type": "City",
-            "Rank": 25,
-            "LocalizedName": "Jakarta Pusat",
-            "Country": {
-              "ID": "ID",
-              "LocalizedName": "Indonesia"
-            },
-            "AdministrativeArea": {
-              "ID": "JK",
-              "LocalizedName": "Jakarta"
-            }
-          },
-          {
-            "Version": 1,
-            "Key": "3430607",
-            "Type": "City",
-            "Rank": 25,
-            "LocalizedName": "Jakarta Selatan",
-            "Country": {
-              "ID": "ID",
-              "LocalizedName": "Indonesia"
-            },
-            "AdministrativeArea": {
-              "ID": "JK",
-              "LocalizedName": "Jakarta"
-            }
-          },
-          {
-            "Version": 1,
-            "Key": "3430608",
-            "Type": "City",
-            "Rank": 25,
-            "LocalizedName": "Jakarta Timur",
-            "Country": {
-              "ID": "ID",
-              "LocalizedName": "Indonesia"
-            },
-            "AdministrativeArea": {
-              "ID": "JK",
-              "LocalizedName": "Jakarta"
-            }
-          },
-          {
-            "Version": 1,
-            "Key": "3430610",
-            "Type": "City",
-            "Rank": 25,
-            "LocalizedName": "Jakarta Utara",
-            "Country": {
-              "ID": "ID",
-              "LocalizedName": "Indonesia"
-            },
-            "AdministrativeArea": {
-              "ID": "JK",
-              "LocalizedName": "Jakarta"
-            }
-          },
-          {
-            "Version": 1,
-            "Key": "3484709",
-            "Type": "City",
-            "Rank": 85,
-            "LocalizedName": "Jakarta Baru",
-            "Country": {
-              "ID": "ID",
-              "LocalizedName": "Indonesia"
-            },
-            "AdministrativeArea": {
-              "ID": "MA",
-              "LocalizedName": "Maluku"
-            }
-          },
-          {
-            "Version": 1,
-            "Key": "3427242",
-            "Type": "City",
-            "Rank": 85,
-            "LocalizedName": "Jakarta",
-            "Country": {
-              "ID": "PH",
-              "LocalizedName": "Philippines"
-            },
-            "AdministrativeArea": {
-              "ID": "TAW",
-              "LocalizedName": "Tawi-Tawi"
-            }
-          }
-        ];
+        const result = location;
         this.isShowLoading = true;
         setTimeout(() => {
           if (result) {

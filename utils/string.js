@@ -1,5 +1,12 @@
 const alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 const alphabetUpperCase = alphabet.map((item) => item.toUpperCase());
+const pressureTendency = {
+  en: {
+    F: 'Falling',
+    S: 'Steady',
+    R: 'Rising'
+  }
+}
 
 export const encryptText = (text) => {
   return text.split('').map((item) => {
@@ -36,3 +43,5 @@ export const decryptNumber = (number) => {
     return `${(Number(item) + 3) % 10}`
   }).join('');
 };
+
+export const pressureTendencyByCode = (code, locale = 'en') => pressureTendency[locale][code];

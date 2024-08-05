@@ -16,22 +16,20 @@
           }"
         />
       </div>
-      <div id="more-headline">
-        <div class="data-container small-container">
-          <SimpleData
-            :title="'Real Feel'"
-            :value="String(data?.RealFeelTemperature?.[unit]?.Value)"
-            :unit="data?.RealFeelTemperature?.[unit]?.Unit"
-          />
-        </div>
-        <div class="data-container small-container">
-          <SimpleData
-            :title="'Temperature Difference'"
-            :value="String(data?.Past24HourTemperatureDeparture?.[unit]?.Value)"
-            :unit="data?.Past24HourTemperatureDeparture?.[unit]?.Unit"
-            :additional-information="temperatureDifferenceInformation"
-          />
-        </div>
+      <div class="data-container more-data-container small-container">
+        <SimpleData
+          :title="'Real Feel'"
+          :value="String(data?.RealFeelTemperature?.[unit]?.Value)"
+          :unit="data?.RealFeelTemperature?.[unit]?.Unit"
+        />
+      </div>
+      <div class="data-container more-data-container small-container">
+        <SimpleData
+          :title="'Temperature Difference'"
+          :value="String(data?.Past24HourTemperatureDeparture?.[unit]?.Value)"
+          :unit="data?.Past24HourTemperatureDeparture?.[unit]?.Unit"
+          :additional-information="temperatureDifferenceInformation"
+        />
       </div>
       <div class="data-container more-data-container small-container">
         <SimpleData
@@ -55,7 +53,18 @@
         <SimpleData
           :title="'Visibility'"
           :value="String(data?.Visibility?.[unit]?.Value)"
-          :unit="String(data?.Visibility?.[unit]?.Unit)"
+          :unit="data?.Visibility?.[unit]?.Unit"
+        />
+      </div>
+      <div class="data-container more-data-container small-container">
+        <SimpleData
+          :title="'Pressure'"
+          :value="String(unit === 'Metric'
+            ? data?.Pressure?.[unit]?.Value / 1000
+            : data?.Pressure?.[unit]?.Value
+          )"
+          :unit="unit === 'Metric' ? 'hPa' : data?.Pressure?.[unit]?.Unit"
+          :additional-information="pressureTendencyByCode(data?.PressureTendency?.Code)"
         />
       </div>
     </div>
@@ -63,7 +72,7 @@
 </template>
 
 <script>
-import { decryptNumber, decryptText } from '@/utils/string';
+import { decryptNumber, decryptText, pressureTendencyByCode } from '@/utils/string';
 import sampleData from '@/data/sample.json';
 
 import Headline from '@/components/weather-components/Headline';
@@ -138,12 +147,6 @@ export default {
   grid-column: span 6 / span 6;
   height: calc(200px - 24px);
 }
-#more-headline {
-  grid-column: span 6 / span 6;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
 .small-container {
   height: calc(200px - 24px);
 }
@@ -155,12 +158,6 @@ export default {
   .data-container#headline {
     grid-column: span 12 / span 12;
     height: calc(280px - 24px);
-  }
-  #more-headline {
-    grid-column: span 12 / span 12;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
   }
   .small-container {
     height: calc(160px - 24px);

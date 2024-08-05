@@ -56,7 +56,8 @@ export default {
   line-height: 1;
 }
 .data-container .description {
-  margin: 4px 0 0;
+  margin: 8px 0 0;
+  font-size: 14px;
 }
 .index-bar-container {
   width: 100%;
