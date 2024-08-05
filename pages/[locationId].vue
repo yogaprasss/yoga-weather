@@ -25,9 +25,11 @@
           />
         </div>
         <div class="data-container small-container">
-          <TemperatureDifference
-            :value="data?.Past24HourTemperatureDeparture?.[unit]?.Value"
+          <SimpleData
+            :title="'Temperature Difference'"
+            :value="String(data?.Past24HourTemperatureDeparture?.[unit]?.Value)"
             :unit="data?.Past24HourTemperatureDeparture?.[unit]?.Unit"
+            :additional-information="temperatureDifferenceInformation"
           />
         </div>
       </div>
@@ -49,6 +51,13 @@
           :degree="data?.Wind?.Direction?.Degrees"
         />
       </div>
+      <div class="data-container more-data-container small-container">
+        <SimpleData
+          :title="'Visibility'"
+          :value="String(data?.Visibility?.[unit]?.Value)"
+          :unit="String(data?.Visibility?.[unit]?.Unit)"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -59,7 +68,6 @@ import sampleData from '@/data/sample.json';
 
 import Headline from '@/components/weather-components/Headline';
 import SimpleData from '@/components/weather-components/SimpleData';
-import TemperatureDifference from '@/components/weather-components/TemperatureDifference';
 import UVIndex from '@/components/weather-components/UVIndex';
 import Wind from '@/components/weather-components/Wind';
 
@@ -68,7 +76,6 @@ export default {
   components: {
     Headline,
     SimpleData,
-    TemperatureDifference,
     UVIndex,
     Wind
   },
@@ -87,6 +94,12 @@ export default {
       const value = this.data?.DewPoint?.[this.unit]?.Value;
       const unit = this.data?.DewPoint?.[this.unit]?.Unit;
       return `The dew point is ${value}°${unit} right now`;
+    },
+    temperatureDifferenceInformation() {
+      const context = this.data?.Past24HourTemperatureDeparture?.[this.unit]?.Value < 0
+        ? 'lower'
+        : 'higher';
+      return context + ' than the last 24 hour';
     }
   },
   created() {

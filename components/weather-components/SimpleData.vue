@@ -2,10 +2,12 @@
   <div class="container">
     <p class="title">{{ title }}</p>
     <div class="data-container">
-      <h3>{{ dataWithUnit }}</h3>
-    </div>
-    <div v-if="!!additionalInformation" class="additional-information">
-      {{ additionalInformation }}
+      <div class="data-content">
+        <h3>{{ dataWithUnit }}</h3>
+        <p v-if="!!additionalInformation" class="additional-information">
+          {{ additionalInformation }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -44,20 +46,24 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.data-container h3 {
+.data-container .data-content {
+  text-align: center;
+}
+.data-content h3 {
   font-size: 44px;
   margin: 0;
   line-height: 1;
 }
 .additional-information {
   font-size: 14px;
+  margin: 8px 0 0;
 }
 @media (max-width: 575.98px) {
   .title {
     margin-bottom: 8px;
     text-align: left !important;
   }
-  .data-container h3 {
+  .data-content h3 {
     font-size: 36px;
     margin: 0;
   }
