@@ -41,6 +41,13 @@
       <div class="data-container more-data-container small-container">
         <UVIndex :value="data?.UVIndex" :text="data?.UVIndexText" />
       </div>
+      <div class="data-container more-data-container small-container">
+        <Wind
+          :speed="data?.Wind?.Speed?.[unit]?.Value"
+          :unit="data?.Wind?.Speed?.[unit]?.Unit"
+          :degree="data?.Wind?.Direction?.Degrees"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -53,6 +60,7 @@ import Headline from '@/components/weather-components/Headline';
 import SimpleData from '@/components/weather-components/SimpleData';
 import TemperatureDifference from '@/components/weather-components/TemperatureDifference';
 import UVIndex from '@/components/weather-components/UVIndex';
+import Wind from '@/components/weather-components/Wind';
 
 export default {
   name: 'weather-page',
@@ -60,7 +68,8 @@ export default {
     Headline,
     SimpleData,
     TemperatureDifference,
-    UVIndex
+    UVIndex,
+    Wind
   },
   data() {
     return {

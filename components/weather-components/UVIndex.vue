@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'simple-data',
+  name: 'uv-index-data',
   props: {
     value: { type: Number, default: 0 },
     text: { type: String, default: '' }
@@ -65,7 +65,7 @@ export default {
 .index-bar {
   width: 100%;
   height: 6px;
-  background: linear-gradient(90deg, #0f0 0%, #ff0 20%, #f80 60%, #f00 65%, #f0f 98%);
+  background: linear-gradient(90deg, #0f0 0%, #ff0 20%, #f80 60%, #f00 65%, #818 98%);
   border-radius: 3px;
   border: 1px solid #bbb;
 }

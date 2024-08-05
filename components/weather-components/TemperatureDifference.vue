@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'simple-data',
+  name: 'temperature-difference-data',
   props: {
     value: { type: Number, default: 0 },
     unit: { type: String, default: '' }
