@@ -1,0 +1,58 @@
+<template>
+  <div class="container">
+    <p class="title">{{ title }}</p>
+    <div class="data-container">
+      <h3>{{ dataWithUnit }}</h3>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'simple-data',
+  props: {
+    title: { type: String, default: '' },
+    value: { type: String, default: '' },
+    unit: { type: String, default: '' }
+  },
+  computed: {
+    dataWithUnit() {
+      if (['C', 'F'].includes(this.unit)) return `${this.value}°${this.unit}`;
+      return `${this.value} ${this.unit}`;
+    }
+  }
+};
+</script>
+
+<style lang="css" scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.title {
+  margin: 0;
+  font-size: 16px;
+}
+.data-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.data-container h3 {
+  font-size: 44px;
+  margin: 0;
+  line-height: 1;
+}
+@media (max-width: 575.98px) {
+  .title {
+    margin-bottom: 8px;
+    text-align: left !important;
+  }
+  .data-container h3 {
+    font-size: 36px;
+    margin: 0;
+  }
+}
+</style>

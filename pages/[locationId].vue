@@ -16,6 +16,21 @@
           }"
         />
       </div>
+      <div id="more-headline">
+        <div class="data-container small-container">
+          <SimpleData
+            :title="'Real Feel'"
+            :value="data?.RealFeelTemperature?.[unit]?.Value"
+            :unit="data?.RealFeelTemperature?.[unit]?.Unit"
+          />
+        </div>
+        <div class="data-container small-container">
+          <TemperatureDifference
+            :value="data?.Past24HourTemperatureDeparture?.[unit]?.Value"
+            :unit="data?.Past24HourTemperatureDeparture?.[unit]?.Unit"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -25,11 +40,15 @@ import { decryptNumber, decryptText } from '@/utils/string';
 import sampleData from '@/data/sample.json';
 
 import Headline from '@/components/weather-components/Headline';
+import SimpleData from '@/components/weather-components/SimpleData';
+import TemperatureDifference from '@/components/weather-components/TemperatureDifference';
 
 export default {
   name: 'weather-page',
   components: {
-    Headline
+    Headline,
+    SimpleData,
+    TemperatureDifference
   },
   data() {
     return {
@@ -77,11 +96,26 @@ export default {
   grid-column: span 4 / span 4;
   height: calc(400px + 1rem - 24px);
 }
+#more-headline {
+  grid-column: span 2 / span 2;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+}
+.small-container {
+  height: calc(200px - 24px);
+}
 
 @media (max-width: 575.98px) {
   .data-container#headline {
     grid-column: span 6 / span 6;
     height: calc(320px - 24px);
+  }
+  #more-headline {
+    grid-column: span 6 / span 6;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
   }
 }
 </style>
