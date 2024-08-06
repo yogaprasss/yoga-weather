@@ -12,7 +12,7 @@
       <ul v-else>
         <li v-for="option in options" :key="option.value">
           <button class="option" @click="onSelectOption(option)">
-            {{ option.name }}
+            {{ option.name }}, {{ option.area }}, {{ option.country }}
           </button>
         </li>
       </ul>
@@ -23,8 +23,6 @@
 <script>
 import { debounce } from '@/utils/debounce';
 import Spinner from './Spinner';
-import location from '@/data/location.json';
-// import { getLocations } from '@/services/locations';
 
 export default {
   name: 'Autocomplete',
@@ -44,25 +42,24 @@ export default {
     this.fetchLocation = debounce(async (value) => {
       this.isShowList = false;
       if (value) {
-        // const result = await getLocations(value);
-        const result = location;
         this.isShowLoading = true;
-        setTimeout(() => {
-          if (result) {
-            this.options = result.map((item) => ({
-              value: item.Key,
-              name: item.LocalizedName,
-              country: item.Country.LocalizedName,
-              area: item.AdministrativeArea.LocalizedName,
-            }));
-            this.isError = false;
-          } else {
-            this.options = [];
-            this.isError = true;
-          }
-          this.isShowLoading = false;
-          this.isShowList = true;
-        }, 5000);
+        const result = await fetch('/api/locations?keyword=' + value);
+        const data = await result.json();
+
+        if (result && data) {
+          this.options = data.map((item) => ({
+            value: item.Key,
+            name: item.LocalizedName,
+            country: item.Country.LocalizedName,
+            area: item.AdministrativeArea.LocalizedName,
+          }));
+          this.isError = false;
+        } else {
+          this.options = [];
+          this.isError = true;
+        }
+        this.isShowLoading = false;
+        this.isShowList = true;
       }
     }, 1000);
   },

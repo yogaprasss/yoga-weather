@@ -13,7 +13,7 @@
 
 <script>
 import Autocomplete from '@/components/Autocomplete';
-import { encryptText, encryptNumber } from '@/utils/string';
+import { searchForKeyword } from '@/utils/search';
 
 export default {
   name: 'home-page',
@@ -22,12 +22,7 @@ export default {
   },
   methods: {
     onSelectOption(params) {
-      const value = encryptNumber(params.value);
-      const name = encryptText(params.name);
-      const area = encryptText(params.area);
-      const country = encryptText(params.country);
-      const encrypted = [value, name, area, country].join('&');
-      this.$router.push(encrypted);
+      searchForKeyword(params, this.$router);
     }
   }
 }

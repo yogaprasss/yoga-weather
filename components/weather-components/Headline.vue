@@ -4,11 +4,7 @@
       <p class="title">
         <strong>{{ location.location }}, {{ location.area }}, {{ location.country }}</strong>
       </p>
-      <div class="observation-time-desktop">
-        <p class="title">Observed on</p>
-        <p class="title">{{ dateObservedString }}</p>
-      </div>
-      <p class="title observation-time-mobile">
+      <p class="title">
         Observed on {{ dateObservedString }}
       </p>
     </div>
@@ -19,11 +15,6 @@
           <h3>{{ temperatureData.value }}°{{ temperatureData.unit }}</h3>
         </div>
         <p>{{ temperatureData.text }}</p>
-      </div>
-      <div class="temperature-mobile">
-        <img :src="weatherIcons[temperatureData.icon]" alt="weather" height="50" />
-        <p>{{ temperatureData.text }}</p>
-        <h3>{{ temperatureData.value }}°{{ temperatureData.unit }}</h3>
       </div>
     </div>
   </div>
@@ -58,31 +49,17 @@ export default {
   height: 100%;
 }
 .headline-container {
-  display: flex;
-  justify-content: space-between;
-}
-.title {
-  margin: 0;
-  font-size: 16px;
-}
-.observation-time-desktop {
-  text-align: right;
   display: block;
 }
-.observation-time-mobile {
-  display: none;
+.title {
+  margin: 0 0 8px;
+  font-size: 16px;
 }
 .temperature-container {
   flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.temperature-desktop {
-  display: block;
-}
-.temperature-mobile {
-  display: none;
 }
 .temperature-content {
   display: flex;
@@ -94,7 +71,7 @@ export default {
   margin: 0;
   line-height: 1;
 }
-.temperature-desktop p {
+.temperature-content ~ p {
   text-align: center;
   font-size: 18px;
   margin: 8px 0 0;
@@ -104,29 +81,6 @@ export default {
   .title {
     margin-bottom: 8px;
     text-align: left !important;
-  }
-  .headline-container {
-    display: block;
-  }
-  .observation-time-desktop {
-    display: none;
-  }
-  .observation-time-mobile {
-    display: block;
-  }
-  .temperature-desktop {
-    display: none;
-  }
-  .temperature-mobile {
-    display: block;
-    text-align: center;
-  }
-  .temperature-mobile h3 {
-    font-size: 36px;
-    margin: 0;
-  }
-  .temperature-mobile p {
-    margin: 8px 0;
   }
 }
 </style>

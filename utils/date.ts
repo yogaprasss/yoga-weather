@@ -1,7 +1,7 @@
 const monthEn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const monthId = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
 
-export const dateFormat = (dateParam, lang = 'en') => {
+export const dateFormat = (dateParam: Date, lang = 'en') => {
   const date = new Date(dateParam);
   
   const year = date.getFullYear();
