@@ -7,7 +7,7 @@
     <div v-if="isShowList" class="options">
       <div v-if="options.length === 0 && !isError" class="not-found">No location found</div>
       <div v-else-if="options.length === 0 && isError" class="not-found error">
-        An error has occured
+        Due to high volume of request, we cannot make your request today. You can try again tomorrow
       </div>
       <ul v-else>
         <li v-for="option in options" :key="option.value">
@@ -132,6 +132,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: .75rem 1rem;
+  height: 100%;
+  min-height: 48px;
 }
 
 .options ul {

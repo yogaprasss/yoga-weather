@@ -3,7 +3,10 @@
     <Head>
       <Title>Weather Forecast for {{ location }} | YogaWeather</Title>
     </Head>
-    <div class="content">
+    <div v-if="!isLoading && JSON.stringify(data) === '{}'" class="error-data">
+      Due to high volume of request, we cannot make your request today. You can try again tomorrow
+    </div>
+    <div v-else class="content">
       <div id="headline" :class="['data-container', { loading: isLoading }]">
         <Spinner v-if="isLoading" large />
         <Headline
@@ -147,10 +150,9 @@ export default {
       try {
         const result = await fetch('/api/weather?locationid=' + locId);
         const data = await result.json();
-        if (result && data) {
-          this.data = data[0];
-          this.isLoading = false;
-        }
+        if (result && data) this.data = data[0];
+        else this.data = {};
+        this.isLoading = false;
       } catch (error) {
         console.error(error);
       }
