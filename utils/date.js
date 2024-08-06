@@ -1,5 +1,5 @@
 const monthEn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const monthId = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const monthId = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
 
 export const dateFormat = (dateParam, lang = 'en') => {
   const date = new Date(dateParam);
@@ -11,9 +11,10 @@ export const dateFormat = (dateParam, lang = 'en') => {
   const hour = date.getHours();
   const minute = date.getMinutes();
   const amPm = hour < 12 ? 'AM' : 'PM';
+  const twelveHourBasis = hour % 12 === 0 ? 12 : hour % 12;
 
   const dateString = lang === 'en' ? `${month} ${day}, ${year}` : `${day} ${month} ${year}`;
-  const timeString = `${hour}:${minute < 10 ? '0' : ''}${minute}${lang === 'en' ? ' ' + amPm : ''}`;
+  const timeString = `${lang === 'en' ? twelveHourBasis : hour}:${minute < 10 ? '0' : ''}${minute}${lang === 'en' ? ' ' + amPm : ''}`;
 
   return `${dateString} ${timeString}`;
 };

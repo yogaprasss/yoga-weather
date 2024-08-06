@@ -33,6 +33,14 @@
       </div>
       <div class="data-container more-data-container small-container">
         <SimpleData
+          :title="'Precipitation'"
+          :value="String(data?.PrecipitationSummary?.Past24Hours?.[unit]?.Value)"
+          :unit="data?.PrecipitationSummary?.Past24Hours?.[unit]?.Unit"
+          :additional-information="'in the last 24 hour'"
+        />
+      </div>
+      <div class="data-container more-data-container small-container">
+        <SimpleData
           :title="'Humidity'"
           :value="String(data?.RelativeHumidity)"
           unit="%"
