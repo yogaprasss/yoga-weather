@@ -12,7 +12,7 @@
       <ul v-else>
         <li v-for="option in options" :key="option.value">
           <button class="option" @click="onSelectOption(option)">
-            {{ option.name }}
+            {{ option.name }}, {{ option.area }}, {{ option.country }}
           </button>
         </li>
       </ul>
@@ -23,7 +23,6 @@
 <script>
 import { debounce } from '@/utils/debounce';
 import Spinner from './Spinner';
-// import { getLocations } from '@/services/locations';
 
 export default {
   name: 'Autocomplete',
@@ -43,146 +42,24 @@ export default {
     this.fetchLocation = debounce(async (value) => {
       this.isShowList = false;
       if (value) {
-        // const result = await getLocations(value);
-        const result = [
-          {
-            "Version": 1,
-            "Key": "208971",
-            "Type": "City",
-            "Rank": 10,
-            "LocalizedName": "Jakarta",
-            "Country": {
-              "ID": "ID",
-              "LocalizedName": "Indonesia"
-            },
-            "AdministrativeArea": {
-              "ID": "JK",
-              "LocalizedName": "Jakarta"
-            }
-          },
-          {
-            "Version": 1,
-            "Key": "3430609",
-            "Type": "City",
-            "Rank": 25,
-            "LocalizedName": "Jakarta Barat",
-            "Country": {
-              "ID": "ID",
-              "LocalizedName": "Indonesia"
-            },
-            "AdministrativeArea": {
-              "ID": "JK",
-              "LocalizedName": "Jakarta"
-            }
-          },
-          {
-            "Version": 1,
-            "Key": "1982856",
-            "Type": "City",
-            "Rank": 25,
-            "LocalizedName": "Jakarta Pusat",
-            "Country": {
-              "ID": "ID",
-              "LocalizedName": "Indonesia"
-            },
-            "AdministrativeArea": {
-              "ID": "JK",
-              "LocalizedName": "Jakarta"
-            }
-          },
-          {
-            "Version": 1,
-            "Key": "3430607",
-            "Type": "City",
-            "Rank": 25,
-            "LocalizedName": "Jakarta Selatan",
-            "Country": {
-              "ID": "ID",
-              "LocalizedName": "Indonesia"
-            },
-            "AdministrativeArea": {
-              "ID": "JK",
-              "LocalizedName": "Jakarta"
-            }
-          },
-          {
-            "Version": 1,
-            "Key": "3430608",
-            "Type": "City",
-            "Rank": 25,
-            "LocalizedName": "Jakarta Timur",
-            "Country": {
-              "ID": "ID",
-              "LocalizedName": "Indonesia"
-            },
-            "AdministrativeArea": {
-              "ID": "JK",
-              "LocalizedName": "Jakarta"
-            }
-          },
-          {
-            "Version": 1,
-            "Key": "3430610",
-            "Type": "City",
-            "Rank": 25,
-            "LocalizedName": "Jakarta Utara",
-            "Country": {
-              "ID": "ID",
-              "LocalizedName": "Indonesia"
-            },
-            "AdministrativeArea": {
-              "ID": "JK",
-              "LocalizedName": "Jakarta"
-            }
-          },
-          {
-            "Version": 1,
-            "Key": "3484709",
-            "Type": "City",
-            "Rank": 85,
-            "LocalizedName": "Jakarta Baru",
-            "Country": {
-              "ID": "ID",
-              "LocalizedName": "Indonesia"
-            },
-            "AdministrativeArea": {
-              "ID": "MA",
-              "LocalizedName": "Maluku"
-            }
-          },
-          {
-            "Version": 1,
-            "Key": "3427242",
-            "Type": "City",
-            "Rank": 85,
-            "LocalizedName": "Jakarta",
-            "Country": {
-              "ID": "PH",
-              "LocalizedName": "Philippines"
-            },
-            "AdministrativeArea": {
-              "ID": "TAW",
-              "LocalizedName": "Tawi-Tawi"
-            }
-          }
-        ];
         this.isShowLoading = true;
-        setTimeout(() => {
-          if (result) {
-            this.options = result.map((item) => ({
-              value: item.Key,
-              name: item.LocalizedName,
-              country: item.Country.LocalizedName,
-              area: item.AdministrativeArea.LocalizedName,
-            }));
-            this.isError = false;
-          } else {
-            this.options = [];
-            this.isError = true;
-          }
-          this.isShowLoading = false;
-          this.isShowList = true;
-        }, 5000);
+        const result = await fetch('/api/locations?keyword=' + value);
+        const data = await result.json();
+
+        if (result && data) {
+          this.options = data.map((item) => ({
+            value: item.Key,
+            name: item.LocalizedName,
+            country: item.Country.LocalizedName,
+            area: item.AdministrativeArea.LocalizedName,
+          }));
+          this.isError = false;
+        } else {
+          this.options = [];
+          this.isError = true;
+        }
+        this.isShowLoading = false;
+        this.isShowList = true;
       }
     }, 1000);
   },

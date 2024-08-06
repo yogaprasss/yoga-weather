@@ -10,7 +10,7 @@
         </div>
         <img src="@/assets/yw-text.png" alt="text" class="logo" />
         <div class="search-desktop">
-          <Autocomplete on-header />
+          <Autocomplete on-header @select-option="onSelectOption" />
         </div>
         <div class="toolbar">
           <DropdownSelector v-model="unit" :options="unitOptions" />
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div :class="['search-mobile-container', { show: isShowSearch }]">
-      <Autocomplete on-header />
+      <Autocomplete on-header @select-option="onSelectOption" />
     </div>
   </div>
 </template>
@@ -27,8 +27,10 @@
 <script>
 import Autocomplete from './Autocomplete';
 import DropdownSelector from './DropdownSelector';
+import { searchForKeyword } from '@/utils/search';
+
 export default {
-  name: 'header',
+  name: 'layout-header',
   components: {
     DropdownSelector,
     Autocomplete
@@ -51,6 +53,9 @@ export default {
   methods: {
     toggleSearch() {
       this.isShowSearch = !this.isShowSearch;
+    },
+    onSelectOption(params) {
+      searchForKeyword(params, this.$router);
     }
   }
 }
@@ -61,6 +66,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 99;
 }
 .header-container {
   --padding-x: 1rem;
@@ -94,6 +100,8 @@ export default {
   height: 32px;
 }
 .toolbar {
+  /* Coming Soon */
+  visibility: hidden;
   display: flex;
   align-items: center;
   gap: 12px;

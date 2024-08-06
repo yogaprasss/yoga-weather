@@ -16,11 +16,6 @@
         </div>
         <p>{{ temperatureData.text }}</p>
       </div>
-      <div class="temperature-mobile">
-        <img :src="weatherIcons[temperatureData.icon]" alt="weather" height="50" />
-        <p>{{ temperatureData.text }}</p>
-        <h3>{{ temperatureData.value }}°{{ temperatureData.unit }}</h3>
-      </div>
     </div>
   </div>
 </template>
@@ -54,28 +49,17 @@ export default {
   height: 100%;
 }
 .headline-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: block;
 }
 .title {
-  margin: 0;
+  margin: 0 0 8px;
   font-size: 16px;
-}
-.title:last-child {
-  text-align: right;
 }
 .temperature-container {
   flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.temperature-desktop {
-  display: block;
-}
-.temperature-mobile {
-  display: none;
 }
 .temperature-content {
   display: flex;
@@ -87,29 +71,16 @@ export default {
   margin: 0;
   line-height: 1;
 }
-.temperature-desktop p {
+.temperature-content ~ p {
   text-align: center;
   font-size: 18px;
+  margin: 8px 0 0;
 }
 
 @media (max-width: 575.98px) {
   .title {
     margin-bottom: 8px;
     text-align: left !important;
-  }
-  .headline-container {
-    display: block;
-  }
-  .temperature-desktop {
-    display: none;
-  }
-  .temperature-mobile {
-    display: block;
-    text-align: center;
-  }
-  .temperature-mobile h3 {
-    font-size: 36px;
-    margin: 0;
   }
 }
 </style>

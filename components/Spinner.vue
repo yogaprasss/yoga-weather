@@ -1,12 +1,13 @@
 <template>
-  <div :class="['spinner', { small }]"></div>
+  <div :class="['spinner', { small, large }]"></div>
 </template>
 
 <script>
 export default {
   name: 'spinner',
   props: {
-    small: { type: Boolean, default: false }
+    small: { type: Boolean, default: false },
+    large: { type: Boolean, default: false }
   }
 };
 </script>
@@ -25,6 +26,11 @@ export default {
 .spinner.small {
   width: 16px;
   height: 16px;
+}
+
+.spinner.large {
+  width: 32px;
+  height: 32px;
 }
 
 @-webkit-keyframes spin {
