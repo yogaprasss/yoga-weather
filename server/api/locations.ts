@@ -7,7 +7,8 @@ export default defineEventHandler(async (event) => {
   try {
     const response = await fetch(url + query);
     const result = await response.json();
-    return result;
+    if (Array.isArray(result)) return result;
+    return false;
   } catch (e) {
     return false;
   }
