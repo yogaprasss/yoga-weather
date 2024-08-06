@@ -50,6 +50,11 @@ export default {
       isShowSearch: false
     };
   },
+  watch: {
+    '$route.params': function() {
+      this.isShowSearch = false;
+    }
+  },
   methods: {
     toggleSearch() {
       this.isShowSearch = !this.isShowSearch;
